@@ -40,10 +40,10 @@ int main(void) {
 #define SHIFT 5
 #define MASK 0x1F
 #define N 10000000
-int a[1 + N / BITSPERWORD];
+int a[1 + N / BITSPERWORD];     // N / BITSPERWORD + 1 表示需要这么多个 32 位图来表示整个 10000000 个数；
 
 void set(int i) {
-    a[i >> SHIFT] |= (1 << (i & MASK));
+    a[i >> SHIFT] |= (1 << (i & MASK));     //i >> SHIFT 表示的是该数在第几个 32 位图中，也就是去除低 5 位；而 1 << (i & MASK) 表示的是该数的低 5 位在 32 位图中的位置；
 }
 void clr(int i) {
     a[i >> SHIFT] &= ~(1 << (i & MASK));
